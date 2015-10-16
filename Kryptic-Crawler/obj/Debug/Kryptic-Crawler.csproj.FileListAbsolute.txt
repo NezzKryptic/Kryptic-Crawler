@@ -1,0 +1,9 @@
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\obj\Debug\Kryptic-Crawler.csprojResolveAssemblyReference.cache
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\Kryptic-Crawler.exe.config
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\Kryptic-Crawler.exe
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\Kryptic-Crawler.pdb
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\obj\Debug\Kryptic-Crawler.exe
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\obj\Debug\Kryptic-Crawler.pdb
