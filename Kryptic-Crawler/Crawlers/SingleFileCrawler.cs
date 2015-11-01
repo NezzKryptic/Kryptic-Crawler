@@ -9,20 +9,17 @@ namespace Kryptic_Crawler.Crawlers
 {
     class SingleFileCrawler
     {
-        // Instance Declaration
-        GeneralDownloader downloader = new GeneralDownloader();
-
-        // WebClient Accepted Download Formats
-        string mimeTypes = ArgumentManager.getSetting(12);
-
         // Parse single HTML page for content links
-        public void retrieveFileUrls()
+        public static void retrieveFileUrls()
         {
             // Set file index to specified integer
             int fileIndex = int.Parse(ArgumentManager.getSetting(2));
 
             // Declare blacklist variable
             string[] blacklist = null;
+
+            // WebClient Accepted Download Formats
+            string mimeTypes = ArgumentManager.getSetting(12);
 
             // HTML tags to search through
             string[] htmlTags = ArgumentManager.getSetting(9).Split(',');
@@ -72,7 +69,7 @@ namespace Kryptic_Crawler.Crawlers
                                 if (src != null)
                                 {
                                     File.AppendAllText(ArgumentManager.getSetting(8), "File Index: " + fileIndex + " | Source: " + src + Environment.NewLine);
-                                    downloader.downloadFile(src, fileIndex);
+                                    GeneralDownloader.downloadFile(src, fileIndex);
                                     fileIndex += 1;
                                 }
                             }
@@ -84,7 +81,7 @@ namespace Kryptic_Crawler.Crawlers
                                     if (!blacklist.Any(src.Contains))
                                     {
                                         File.AppendAllText(ArgumentManager.getSetting(8), "File Index: " + fileIndex + " | Source: " + src + Environment.NewLine);
-                                        downloader.downloadFile(src, fileIndex);
+                                        GeneralDownloader.downloadFile(src, fileIndex);
                                         fileIndex += 1;
                                     }
                                 }

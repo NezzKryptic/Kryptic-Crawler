@@ -5,7 +5,7 @@ namespace Kryptic_Crawler
     class ErrorMessages
     {
         // Alerting the user that they haven't provided any arguments
-        public void emptyParameters()
+        public static void emptyParameters()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
@@ -26,7 +26,7 @@ namespace Kryptic_Crawler
         }
 
         // Alert the user that they have provided a parameter that the program doesn't recognize
-        public void invalidMode()
+        public static void invalidMode()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;

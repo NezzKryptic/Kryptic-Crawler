@@ -6,13 +6,8 @@ namespace Kryptic_Crawler
 {
     class ParseSettings
     {
-        // Instance Declaration
-        ErrorMessages errorMessages = new ErrorMessages();
-        SingleFileCrawler singleFileCrawler = new SingleFileCrawler();
-        MultiFileCrawler multiFileCrawler = new MultiFileCrawler();
-
         // Parse provided XML for desired settings
-        public void parseSettings(string[] args)
+        public static void parseSettings(string[] args)
         {
             // Loading Settings file
             XmlDocument settingsFile = new XmlDocument();
@@ -93,18 +88,30 @@ namespace Kryptic_Crawler
             switch (programMode)
             {
                 case "single":
-                    singleFileCrawler.retrieveFileUrls();
+                    SingleFileCrawler.retrieveFileUrls();
                     break;
 
                 case "multi":
-                    multiFileCrawler.retrieveFileUrls();
+                    MultiFileCrawler.retrieveFileUrls();
                     break;
 
-                case "file":
+                case "file-direct":
+                    FileDirect.parseFileList();
+                    break;
+
+                case "file-pages":
                     Console.WriteLine("Mode not supported yet");
                     break;
 
-                case "imgur":
+                case "imgur-direct":
+                    Console.WriteLine("Mode not supported yet");
+                    break;
+
+                case "imgur-album":
+                    Console.WriteLine("Mode not supported yet");
+                    break;
+
+                case "imgur-pages":
                     Console.WriteLine("Mode not supported yet");
                     break;
 
@@ -113,7 +120,7 @@ namespace Kryptic_Crawler
                     break;
 
                 default:
-                    errorMessages.invalidMode();
+                    ErrorMessages.invalidMode();
                     break;
             }
         }

@@ -6,12 +6,12 @@ namespace Kryptic_Crawler.Downloaders
 {
     class GeneralDownloader
     {
-        // WebClient Accepted Download Formats
-        string mimeTypes = ArgumentManager.getSetting(12);
-
         // Download file
-        public void downloadFile(string fileURL, int fileIndex)
+        public static void downloadFile(string fileURL, int fileIndex)
         {
+            // WebClient Accepted Download Formats
+            string mimeTypes = ArgumentManager.getSetting(12);
+
             // Check for output directory
             if (!Directory.Exists(ArgumentManager.getSetting(1)))
             {

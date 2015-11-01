@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgumentManager.cs" />
+    <Compile Include="Crawlers\FileDirect.cs" />
     <Compile Include="Crawlers\MultiFileCrawler.cs" />
     <Compile Include="Crawlers\SingleFileCrawler.cs" />
     <Compile Include="Downloaders\GeneralDownloader.cs" />
@@ -66,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
