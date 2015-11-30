@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kryptic_Crawler.Util;
+using System;
 using System.IO;
 using System.Net;
 
@@ -6,51 +7,39 @@ namespace Kryptic_Crawler.Downloaders
 {
     class GeneralDownloader
     {
-        // Download file
-        public static void downloadFile(string fileURL, int fileIndex)
+        public static void DownloadFile(string fileURL, int fileIndex)
         {
-            // WebClient Accepted Download Formats
-            string mimeTypes = ArgumentManager.getSetting(12);
-
-            // Check for output directory
-            if (!Directory.Exists(ArgumentManager.getSetting(1)))
-            {
-                Directory.CreateDirectory(ArgumentManager.getSetting(1));
-            }
-
-            // Check file extension and download
             WebClient client = new WebClient();
-            client.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
-            if (mimeTypes != null)
+
+            string fileType = fileURL.Substring(fileURL.Length - 10);
+
+            if (!Directory.Exists(ArgumentManager.OUTPUT_PATH))
             {
-                client.Headers.Add(HttpRequestHeader.Accept, mimeTypes);
+                Directory.CreateDirectory(ArgumentManager.OUTPUT_PATH);
             }
 
-            string fileType = fileURL.Substring(fileURL.Length - 5);
-            string[] fileFormats = ArgumentManager.getSetting(11).Split(',');
+            client.Headers.Add(HttpRequestHeader.UserAgent, ArgumentManager.USER_AGENT);
 
-            // Attempt to determine file type and download
             try
             {
-                for (int typeIndex = 0; typeIndex != fileFormats.Length; typeIndex++)
+                foreach (string file_format in ArgumentManager.FILE_FORMATS)
                 {
-                    if (fileType.Contains("." + fileFormats[typeIndex]))
+                    if (fileType.Contains("." + file_format))
                     {
-                        client.DownloadFile(fileURL, ArgumentManager.getSetting(1) + "\\" + ArgumentManager.getSetting(3) + "(" + fileIndex + ")." + fileFormats[typeIndex]);
-                        break;
+                        if (fileURL.Substring(0, 2) == "//")
+                        {
+                            client.DownloadFile("http:" + fileURL, ArgumentManager.OUTPUT_PATH + "\\" + (ArgumentManager.FILE_NAME).Replace("|#|", fileIndex.ToString()) + "." + file_format);
+                        }
+                        else
+                        {
+                            client.DownloadFile(fileURL, ArgumentManager.OUTPUT_PATH + "\\" + (ArgumentManager.FILE_NAME).Replace("|#|", fileIndex.ToString()) + "." + file_format);
+                        }
                     }
                 }
             }
             catch (Exception e)
             {
-                if (ArgumentManager.getSetting(5) == "false")
-                {
-                    Console.WriteLine("Failed to save file: " + fileURL + Environment.NewLine);
-                }
-                else if (ArgumentManager.getSetting(5) == "true")
-                {
-                    Console.WriteLine(e);
-                }
+                ConsoleManager.WriteToConsole(e.ToString());
             }
         }
     }
