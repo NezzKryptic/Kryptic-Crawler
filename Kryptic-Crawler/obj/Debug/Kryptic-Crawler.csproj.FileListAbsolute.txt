@@ -7,3 +7,4 @@ C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\Htm
 C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\HtmlAgilityPack.xml
 C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\obj\Debug\Kryptic-Crawler.exe
 C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\obj\Debug\Kryptic-Crawler.pdb
+C:\Users\Ian\Desktop\Visual Studio\Kryptic-Crawler\Kryptic-Crawler\bin\Debug\Docs\index.html

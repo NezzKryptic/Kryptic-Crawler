@@ -18,11 +18,11 @@ namespace Kryptic_Crawler.Util
                     break;
 
                 case "file-direct":
-                    //FileDirect.FileDirectConnect();
+                    FileDirect.FileDirectConnect();
                     break;
 
                 case "file-pages":
-                    //FilePages.FilePagesConnect();
+                    FilePages.FilePagesConnect();
                     break;
 
                 case "subreddit":

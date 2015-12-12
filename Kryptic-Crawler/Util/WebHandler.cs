@@ -10,12 +10,12 @@ namespace Kryptic_Crawler.Util
 {
     class WebHandler
     {
-        public static void PullContentLinks(string page, int pageIndex)
+        public static void PullContentLinks(string page, int page_index)
         {
             WebClient client = new WebClient();
             HtmlDocument document = new HtmlDocument();
-
             List<string> blacklist = null;
+            int file_index = 0;
 
             if (ArgumentManager.BLACKLIST_PATH != null)
             {
@@ -42,30 +42,30 @@ namespace Kryptic_Crawler.Util
 
                                 if (src != null)
                                 {
-                                    ConsoleManager.WriteToConsole("Page Index: " + pageIndex + " | File Index: " + ArgumentManager.FILE_INDEX + " | Source: " + src);
+                                    ConsoleManager.WriteToConsole("File Index: " + page_index + "_" + file_index + " | Source: " + src);
 
                                     if (ArgumentManager.BLACKLIST_PATH != null)
                                     {
                                         if (!blacklist.Any(src.Contains))
                                         {
-                                            if (ArgumentManager.LOGFILE_PATH != null)
+                                            if (ArgumentManager.LOG_FILE_PATH != null)
                                             {
-                                                LogManager.WriteToLog("Page Index: " + pageIndex + " | File Index: " + ArgumentManager.FILE_INDEX + " | Source: " + src);
+                                                LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src);
                                             }
 
-                                            GeneralDownloader.DownloadFile(src, ArgumentManager.FILE_INDEX);
-                                            ArgumentManager.FILE_INDEX++;
+                                            GeneralDownloader.DownloadFile(src, page_index + "_" + file_index.ToString());
+                                            file_index++;
                                         }
                                     }
                                     else
                                     {
-                                        if (ArgumentManager.LOGFILE_PATH != null)
+                                        if (ArgumentManager.LOG_FILE_PATH != null)
                                         {
-                                            LogManager.WriteToLog("Page Index: " + pageIndex + " | File Index: " + ArgumentManager.FILE_INDEX + " | Source: " + src);
+                                            LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src);
                                         }
 
-                                        GeneralDownloader.DownloadFile(src, ArgumentManager.FILE_INDEX);
-                                        ArgumentManager.FILE_INDEX++;
+                                        GeneralDownloader.DownloadFile(src, page_index + "_" + file_index.ToString());
+                                        file_index++;
                                     }
                                 }
                             }

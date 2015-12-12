@@ -19,10 +19,18 @@ namespace Kryptic_Crawler
 
                 ConsoleManager.GetKeyPressed();
             }
-            else
+            else if (args[0] == "-xml")
             {
                 ConsoleManager.ClearConsole();
                 ParseSettings.ParseXMLSettings(args);
+            }
+            else if (args[0] == "-manual")
+            {
+                ConsoleManager.WriteToConsole("Mode not supported yet");
+            }
+            else if (args[0] == "-direct")
+            {
+                ConsoleManager.WriteToConsole("Mode not supported yet");
             }
         }
     }
