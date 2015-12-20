@@ -23,5 +23,24 @@ namespace Kryptic_Crawler.Util
         {
             Console.Clear();
         }
+
+        public static void ReadInput()
+        {
+            while (ArgumentManager.ALLOW_RUN)
+            {
+                string command_input = Console.ReadLine().ToLower();
+
+                switch (command_input)
+                {
+                    case "stop":
+                        ArgumentManager.ALLOW_RUN = false;
+                        break;
+
+                    default:
+                        WriteToConsole("Command not recognized");
+                        break;
+                }
+            }
+        }
     }
 }

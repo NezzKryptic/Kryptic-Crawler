@@ -11,7 +11,7 @@ namespace Kryptic_Crawler.Scanners
 
             foreach(string url in url_list)
             {
-                WebHandler.PullContentLinks(url, 0);
+                WebHandler.PullContentLinks(url, 0, 0);
             }
         }
     }

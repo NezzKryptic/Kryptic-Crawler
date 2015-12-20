@@ -5,22 +5,32 @@ namespace Kryptic_Crawler.Scanners
 {
     class MultiPage
     {
-        public static void PageConnect(int thread_increment)
+        public static void PageConnect(int thread_index)
         {
-            for (int pageIndex = ArgumentManager.START_PAGE + thread_increment; pageIndex < ArgumentManager.END_PAGE; pageIndex += ArgumentManager.DOWNLOAD_THREADS)
+            for (int page_index = ArgumentManager.START_PAGE + thread_index; page_index < ArgumentManager.END_PAGE; page_index += ArgumentManager.DOWNLOAD_THREADS)
             {
-                WebHandler.PullContentLinks(ArgumentManager.URL.Replace("|#|", pageIndex.ToString()), pageIndex);
+                if (ArgumentManager.ALLOW_RUN)
+                {
+                    WebHandler.PullContentLinks(ArgumentManager.URL.Replace("|#|", page_index.ToString()), page_index, thread_index);
+                }
+                else
+                {
+                    break;
+                }
             }
         }
 
         public static void MultiConnect()
         {
-            Thread[] download_threads = new Thread[11];
+            Thread read_console_input = new Thread(() => ConsoleManager.ReadInput());
+            read_console_input.Start();
 
-            for (int current_thread = 0; current_thread < ArgumentManager.DOWNLOAD_THREADS; current_thread++)
+            Thread[] download_threads = new Thread[ArgumentManager.MAX_DOWNLOAD_THREADS];
+
+            for (int thread_index = 0; thread_index < (ArgumentManager.DOWNLOAD_THREADS + 1); thread_index++)
             {
-                download_threads[current_thread] = new Thread(() => PageConnect(current_thread));
-                download_threads[current_thread].Start();
+                download_threads[thread_index] = new Thread(() => PageConnect(thread_index));
+                download_threads[thread_index].Start();
             }
         }
     }

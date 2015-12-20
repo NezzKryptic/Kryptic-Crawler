@@ -6,7 +6,7 @@ namespace Kryptic_Crawler.Scanners
     {
         public static void SingleConnect()
         {
-            WebHandler.PullContentLinks(ArgumentManager.URL, 0);
+            WebHandler.PullContentLinks(ArgumentManager.URL, 0, 0);
         }
     }
 }

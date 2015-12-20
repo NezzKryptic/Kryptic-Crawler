@@ -10,7 +10,7 @@ namespace Kryptic_Crawler.Util
 {
     class WebHandler
     {
-        public static void PullContentLinks(string page, int page_index)
+        public static void PullContentLinks(string page, int page_index, int thread_index)
         {
             WebClient client = new WebClient();
             HtmlDocument document = new HtmlDocument();
@@ -50,7 +50,7 @@ namespace Kryptic_Crawler.Util
                                         {
                                             if (ArgumentManager.LOG_FILE_PATH != null)
                                             {
-                                                LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src);
+                                                LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src, thread_index);
                                             }
 
                                             GeneralDownloader.DownloadFile(src, page_index + "_" + file_index.ToString());
@@ -61,7 +61,7 @@ namespace Kryptic_Crawler.Util
                                     {
                                         if (ArgumentManager.LOG_FILE_PATH != null)
                                         {
-                                            LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src);
+                                            LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src, thread_index);
                                         }
 
                                         GeneralDownloader.DownloadFile(src, page_index + "_" + file_index.ToString());
