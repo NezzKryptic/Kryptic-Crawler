@@ -1,4 +1,6 @@
 # Directories
 Kryptic-Crawler/bin
 Kryptic-Crawler/obj
-.vs/Kryptic-Crawler
+.vs
+.git
+packages
