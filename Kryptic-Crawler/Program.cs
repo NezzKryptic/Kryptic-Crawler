@@ -1,4 +1,5 @@
 ﻿using Kryptic_Crawler.Util;
+using System;
 
 namespace Kryptic_Crawler
 {
@@ -6,31 +7,31 @@ namespace Kryptic_Crawler
     {
         static void Main(string[] args)
         {
-            ConsoleManager.SetConsoleTitle("Kryptic-Crawler");
+            Console.Title = "Kryptic-Crawler";
 
             if (args.Length == 0 || args == null)
             {
-                ConsoleManager.ClearConsole();
+                Console.Clear();
 
-                foreach (string line in ErrorMessages.EmptyParameters())
-                {
-                    ConsoleManager.WriteToConsole(line);
-                }
+                Console.WriteLine(
+                        "No parameters passed to program" +
+                        "\n\n" +
+                        "If you need help, please feel free to consult the documentation at:\n" + Environment.CurrentDirectory + "\\Documentation" +
+                        "\n\n" +
+                        "Please press any key to continue"
+                    );
 
-                ConsoleManager.GetKeyPressed();
+                Console.ReadKey();
             }
             else if (args[0] == "-xml")
             {
-                ConsoleManager.ClearConsole();
-                ParseSettings.ParseXMLSettings(args);
-            }
-            else if (args[0] == "-manual")
-            {
-                ConsoleManager.WriteToConsole("Mode not supported yet");
+                Console.Clear();
+                ParseXML.ParseXMLSettings(args);
             }
             else if (args[0] == "-direct")
             {
-                ConsoleManager.WriteToConsole("Mode not supported yet");
+                Console.Clear();
+                ParseCMD.ParseCMDSettings(args);
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using Kryptic_Crawler.Scanners;
+﻿using Kryptic_Crawler.Modes;
 using System;
 
 namespace Kryptic_Crawler.Util
@@ -30,7 +30,11 @@ namespace Kryptic_Crawler.Util
                     break;
 
                 default:
-                    ErrorMessages.InvalidMode();
+                    Console.WriteLine(
+                        "I'm sorry but the mode you requested isn't supported" +
+                        "\n\n" +
+                        "Please press any key to continue"
+                        );
                     break;
             }
         }

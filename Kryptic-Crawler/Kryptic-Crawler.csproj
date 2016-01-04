@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Kryptic_Crawler</RootNamespace>
     <AssemblyName>Kryptic-Crawler</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -59,14 +59,14 @@
     <Compile Include="Downloaders\GeneralDownloader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scanners\FileDirect.cs" />
-    <Compile Include="Scanners\FilePages.cs" />
-    <Compile Include="Scanners\MultiPage.cs" />
-    <Compile Include="Scanners\SinglePage.cs" />
+    <Compile Include="Modes\FileDirect.cs" />
+    <Compile Include="Modes\FilePages.cs" />
+    <Compile Include="Modes\MultiPage.cs" />
+    <Compile Include="Modes\SinglePage.cs" />
     <Compile Include="Util\ArgumentManager.cs" />
     <Compile Include="Util\ConsoleManager.cs" />
-    <Compile Include="Util\ErrorMessages.cs" />
     <Compile Include="Util\LogManager.cs" />
+    <Compile Include="Util\ParseCMD.cs" />
     <Compile Include="Util\ParseXML.cs" />
     <Compile Include="Util\ProgramMode.cs" />
     <Compile Include="Util\WebHandler.cs" />

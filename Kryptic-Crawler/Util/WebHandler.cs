@@ -2,9 +2,11 @@
 using Kryptic_Crawler.Downloaders;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading;
 
 namespace Kryptic_Crawler.Util
 {
@@ -12,43 +14,48 @@ namespace Kryptic_Crawler.Util
     {
         public static void PullContentLinks(string page, int page_index, int thread_index)
         {
-            WebClient client = new WebClient();
             HtmlDocument document = new HtmlDocument();
-            List<string> blacklist = null;
+            List<string> blacklist = (ArgumentManager.BLACKLIST_PATH != null) ? File.ReadAllLines(ArgumentManager.BLACKLIST_PATH).ToList() : null;
             int file_index = 0;
-
-            if (ArgumentManager.BLACKLIST_PATH != null)
-            {
-                blacklist = File.ReadAllLines(ArgumentManager.BLACKLIST_PATH).ToList();
-            }
 
             try
             {
-                client.Headers.Add(HttpRequestHeader.UserAgent, ArgumentManager.USER_AGENT);
-
-                string html = client.DownloadString(page);
-
-                document.LoadHtml(html);
-
-                foreach (string tag in ArgumentManager.HTML_TAGS)
+                using (WebClient client = new WebClient())
                 {
-                    if (document.DocumentNode.SelectNodes(tag) != null)
+                    client.Headers.Add(HttpRequestHeader.UserAgent, ArgumentManager.USER_AGENT);
+
+                    string html = client.DownloadString(page);
+
+                    document.LoadHtml(html);
+
+                    foreach (string tag in ArgumentManager.HTML_TAGS)
                     {
-                        foreach (HtmlNode current_node in document.DocumentNode.SelectNodes(tag))
+                        if (document.DocumentNode.SelectNodes(tag) != null)
                         {
-                            foreach (string attribute in ArgumentManager.HTML_ATTRIBUTES)
+                            foreach (HtmlNode current_node in document.DocumentNode.SelectNodes(tag))
                             {
-                                string src = current_node.GetAttributeValue(attribute, null);
-
-                                if (src != null)
+                                foreach (string attribute in ArgumentManager.HTML_ATTRIBUTES)
                                 {
-                                    ConsoleManager.WriteToConsole("File Index: " + page_index + "_" + file_index + " | Source: " + src);
+                                    string src = current_node.GetAttributeValue(attribute, null);
 
-                                    if (ArgumentManager.BLACKLIST_PATH != null)
+                                    if (src != null)
                                     {
-                                        if (!blacklist.Any(src.Contains))
+                                        if (ArgumentManager.BLACKLIST_PATH != null)
                                         {
-                                            if (ArgumentManager.LOG_FILE_PATH != null)
+                                            if (!blacklist.Any(src.Contains))
+                                            {
+                                                if (ArgumentManager.LOG_PATH != null)
+                                                {
+                                                    LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src, thread_index);
+                                                }
+
+                                                GeneralDownloader.DownloadFile(src, page_index + "_" + file_index.ToString());
+                                                file_index++;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (ArgumentManager.LOG_PATH != null)
                                             {
                                                 LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src, thread_index);
                                             }
@@ -56,16 +63,11 @@ namespace Kryptic_Crawler.Util
                                             GeneralDownloader.DownloadFile(src, page_index + "_" + file_index.ToString());
                                             file_index++;
                                         }
-                                    }
-                                    else
-                                    {
-                                        if (ArgumentManager.LOG_FILE_PATH != null)
-                                        {
-                                            LogManager.WriteToLog("File Index: " + page_index + "_" + file_index + " | Source: " + src, thread_index);
-                                        }
 
-                                        GeneralDownloader.DownloadFile(src, page_index + "_" + file_index.ToString());
-                                        file_index++;
+                                        Console.SetCursorPosition(0, thread_index * 4);
+                                        Console.WriteLine(new string(' ', Console.WindowWidth * 4));
+                                        Console.SetCursorPosition(0, thread_index * 4);
+                                        Console.WriteLine("Thread Index: " + thread_index + " | Page Index: " + page_index + "_" + file_index + " | Source: " + src + Environment.NewLine);
                                     }
                                 }
                             }
@@ -75,7 +77,7 @@ namespace Kryptic_Crawler.Util
             }
             catch (Exception e)
             {
-                ConsoleManager.WriteToConsole(e.ToString());
+                Debug.WriteLine(e);
             }
         }
     }

@@ -1,7 +1,9 @@
 ﻿using Kryptic_Crawler.Util;
 using System.Threading;
+using System.Linq;
+using System;
 
-namespace Kryptic_Crawler.Scanners
+namespace Kryptic_Crawler.Modes
 {
     class MultiPage
     {
@@ -9,14 +11,18 @@ namespace Kryptic_Crawler.Scanners
         {
             for (int page_index = ArgumentManager.START_PAGE + thread_index; page_index < ArgumentManager.END_PAGE; page_index += ArgumentManager.DOWNLOAD_THREADS)
             {
-                if (ArgumentManager.ALLOW_RUN)
+                ArgumentManager.PAGE_INDEXES[thread_index] = page_index;
+
+                if (!ArgumentManager.ALLOW_RUN)
                 {
-                    WebHandler.PullContentLinks(ArgumentManager.URL.Replace("|#|", page_index.ToString()), page_index, thread_index);
+                    var max_page = ArgumentManager.PAGE_INDEXES.Max();
+
+                    if (page_index >= (max_page - 8))
+                    {
+                        break;
+                    }
                 }
-                else
-                {
-                    break;
-                }
+                WebHandler.PullContentLinks(ArgumentManager.DOWNLOAD_URL.Replace("|#|", page_index.ToString()), page_index, thread_index);
             }
         }
 
@@ -27,10 +33,11 @@ namespace Kryptic_Crawler.Scanners
 
             Thread[] download_threads = new Thread[ArgumentManager.MAX_DOWNLOAD_THREADS];
 
-            for (int thread_index = 0; thread_index < (ArgumentManager.DOWNLOAD_THREADS + 1); thread_index++)
+            for (int thread_index = 0; thread_index < ArgumentManager.DOWNLOAD_THREADS; thread_index++)
             {
                 download_threads[thread_index] = new Thread(() => PageConnect(thread_index));
                 download_threads[thread_index].Start();
+                Thread.Sleep(5);
             }
         }
     }
