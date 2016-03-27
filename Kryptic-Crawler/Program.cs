@@ -1,5 +1,5 @@
-﻿using Kryptic_Crawler.Util;
-using System;
+﻿using System;
+using Kryptic_Crawler.Util;
 
 namespace Kryptic_Crawler
 {
@@ -22,6 +22,11 @@ namespace Kryptic_Crawler
                     );
 
                 Console.ReadKey();
+            }
+            else if (args[0] == "-json")
+            {
+                Console.Clear();
+                ParseJSON.ParseJSONSettings(args);
             }
             else if (args[0] == "-xml")
             {

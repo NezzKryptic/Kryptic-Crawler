@@ -1,7 +1,6 @@
 ﻿using Kryptic_Crawler.Util;
-using System.Threading;
 using System.Linq;
-using System;
+using System.Threading;
 
 namespace Kryptic_Crawler.Modes
 {

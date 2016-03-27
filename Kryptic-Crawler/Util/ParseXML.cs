@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Xml;
 
 namespace Kryptic_Crawler.Util
@@ -124,7 +123,7 @@ namespace Kryptic_Crawler.Util
             }
             catch
             {
-                
+
             }
 
             XmlNode file_name_node = download_settings.SelectSingleNode("file_name");
