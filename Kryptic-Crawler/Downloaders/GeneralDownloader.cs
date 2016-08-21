@@ -12,7 +12,7 @@ namespace Kryptic_Crawler.Downloaders
         {
             using (WebClient client = new WebClient())
             {
-                string fileType = fileURL.Substring(fileURL.Length - 10);
+                string fileType = fileURL.Substring(fileURL.Length - 16);
 
                 if (!Directory.Exists(ArgumentManager.DOWNLOAD_PATH))
                 {

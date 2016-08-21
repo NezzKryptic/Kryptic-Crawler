@@ -1,13 +1,13 @@
-﻿using Kryptic_Crawler.Modes;
+﻿using Kryptic_Crawler.Util;
 using System;
 
-namespace Kryptic_Crawler.Util
+namespace Kryptic_Crawler.Modes
 {
     class ProgramMode
     {
-        public static void LoadMode(string programMode)
+        internal static void LoadMode()
         {
-            switch (programMode)
+            switch (ArgumentManager.PROGRAM_MODE)
             {
                 case "single-page":
                     SinglePage.SingleConnect();

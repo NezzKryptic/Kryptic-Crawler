@@ -11,7 +11,7 @@ namespace Kryptic_Crawler.Util
 {
     class WebHandler
     {
-        public static void PullContentLinks(string page, int page_index, int thread_index)
+        internal static void PullContentLinks(string page, int page_index, int thread_index)
         {
             HtmlDocument document = new HtmlDocument();
             List<string> blacklist = (ArgumentManager.BLACKLIST_PATH != null) ? File.ReadAllLines(ArgumentManager.BLACKLIST_PATH).ToList() : null;

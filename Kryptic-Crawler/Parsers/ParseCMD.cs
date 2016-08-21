@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Kryptic_Crawler.Modes;
+using Kryptic_Crawler.Util;
+using System;
 
 namespace Kryptic_Crawler.Parsers
 {
@@ -14,70 +16,88 @@ namespace Kryptic_Crawler.Parsers
                 {
                     case "-program_mode":
                         ArgumentManager.PROGRAM_MODE = args[args_index + 1];
+                        args_index += 2;
                         break;
 
                     case "-download_threads":
                         ArgumentManager.DOWNLOAD_THREADS = int.Parse(args[args_index + 1]);
+                        args_index += 2;
                         break;
 
+                    // ADD DIFFERENT VERBOSE LEVELS - STANDARD, ERROR, LOG, ETC
                     case "-verbose_console":
                         ArgumentManager.VERBOSE_CONSOLE = bool.Parse(args[args_index + 1]);
+                        args_index += 2;
                         break;
 
                     case "-download_url":
                         ArgumentManager.DOWNLOAD_URL = args[args_index + 1].Replace("\\", "\\\\");
+                        args_index += 2;
                         break;
 
                     case "-start_page":
                         ArgumentManager.START_PAGE = int.Parse(args[args_index + 1]);
+                        args_index += 2;
                         break;
 
                     case "-end_page":
                         ArgumentManager.START_PAGE = int.Parse(args[args_index + 1]);
+                        args_index += 2;
                         break;
 
                     case "-html_tags":
                         ArgumentManager.HTML_TAGS = args[args_index + 1].Split(',');
+                        args_index += 2;
                         break;
 
                     case "-html_attributes":
                         ArgumentManager.HTML_ATTRIBUTES = args[args_index + 1].Split(',');
+                        args_index += 2;
                         break;
 
                     case "-user_agent":
                         ArgumentManager.USER_AGENT = args[args_index + 1];
+                        args_index += 2;
                         break;
 
                     case "-download_path":
                         ArgumentManager.DOWNLOAD_PATH = args[args_index + 1].Replace("\\", "\\\\");
+                        args_index += 2;
                         break;
 
                     case "-file_name":
                         ArgumentManager.FILE_NAME = args[args_index + 1];
+                        args_index += 2;
                         break;
 
                     case "-file_formats":
                         ArgumentManager.FILE_FORMATS = args[args_index + 1].Split(',');
+                        args_index += 2;
                         break;
 
                     case "-blacklist_path":
                         ArgumentManager.BLACKLIST_PATH = args[args_index + 1].Replace("\\", "\\\\");
+                        args_index += 2;
                         break;
 
                     case "-log_mode":
                         ArgumentManager.LOG_MODE = args[args_index + 1];
+                        args_index += 2;
                         break;
 
                     case "-log_path":
                         ArgumentManager.LOG_PATH = args[args_index + 1].Replace("\\", "\\\\");
+                        args_index += 2;
                         break;
 
                     case "-log_name":
                         ArgumentManager.LOG_NAME = args[args_index + 1];
+                        args_index += 2;
                         break;
 
                     case "-log_size":
                         ArgumentManager.LOG_SIZE = int.Parse(args[args_index + 1]);
+                        args_index += 2;
                         break;
 
                     default:
@@ -101,7 +121,7 @@ namespace Kryptic_Crawler.Parsers
                 Environment.Exit(0);
             }
 
-            ProgramMode.LoadMode(ArgumentManager.PROGRAM_MODE);
+            ProgramMode.LoadMode();
         }
     }
 }

@@ -1,12 +1,13 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using Kryptic_Crawler.Modes;
+using Kryptic_Crawler.Util;
+using Newtonsoft.Json.Linq;
 using System.IO;
 
-namespace Kryptic_Crawler.Util
+namespace Kryptic_Crawler.Parsers
 {
     class ParseJSON
     {
-        public static void ParseJSONSettings(string[] args)
+        internal static void ParseJSONSettings(string[] args)
         {
             string settings = File.ReadAllText(args[1].Replace("\\", "\\\\"));
 
@@ -32,6 +33,7 @@ namespace Kryptic_Crawler.Util
 
             }
 
+            // ADD DIFFERENT VERBOSE LEVELS - STANDARD, ERROR, LOG, ETC
             // Verbose Console
             try
             {
@@ -182,7 +184,7 @@ namespace Kryptic_Crawler.Util
 
             }
 
-            ProgramMode.LoadMode(ArgumentManager.PROGRAM_MODE);
+            ProgramMode.LoadMode();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using Kryptic_Crawler.Util;
+﻿using Kryptic_Crawler.Parsers;
+using System;
 
 namespace Kryptic_Crawler
 {
@@ -16,7 +16,7 @@ namespace Kryptic_Crawler
                 Console.WriteLine(
                         "No parameters passed to program" +
                         "\n\n" +
-                        "If you need help, please feel free to consult the documentation at:\n" + Environment.CurrentDirectory + "\\Documentation" +
+                        "If you need help, please feel free to consult the documentation at:\n" + Environment.CurrentDirectory + "\\Docs" +
                         "\n\n" +
                         "Please press any key to continue"
                     );

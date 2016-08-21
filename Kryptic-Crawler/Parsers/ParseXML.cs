@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Kryptic_Crawler.Modes;
+using Kryptic_Crawler.Util;
+using System;
 using System.Xml;
 
-namespace Kryptic_Crawler.Util
+namespace Kryptic_Crawler.Parsers
 {
     class ParseXML
     {
-        public static void ParseXMLSettings(string[] args)
+        internal static void ParseXMLSettings(string[] args)
         {
             XmlDocument settings_file = new XmlDocument();
             settings_file.Load(args[1]);
@@ -17,7 +19,7 @@ namespace Kryptic_Crawler.Util
             XmlNode program_mode_node = general_settings.SelectSingleNode("program_mode");
             try
             {
-                ArgumentManager.PROGRAM_MODE = program_mode_node.InnerText;
+                ArgumentManager.PROGRAM_MODE = program_mode_node.InnerText.ToLower();
             }
             catch
             {
@@ -36,6 +38,7 @@ namespace Kryptic_Crawler.Util
 
             }
 
+            // ADD DIFFERENT VERBOSE LEVELS - STANDARD, ERROR, LOG, ETC
             XmlNode verbose_console_node = general_settings.SelectSingleNode("verbose_console");
             try
             {
@@ -163,7 +166,7 @@ namespace Kryptic_Crawler.Util
             XmlNode log_mode_node = log_settings.SelectSingleNode("log_mode");
             try
             {
-                ArgumentManager.LOG_MODE = log_mode_node.InnerText;
+                ArgumentManager.LOG_MODE = log_mode_node.InnerText.ToLower();
             }
             catch
             {
@@ -200,7 +203,7 @@ namespace Kryptic_Crawler.Util
 
             }
 
-            ProgramMode.LoadMode(ArgumentManager.PROGRAM_MODE);
+            ProgramMode.LoadMode();
         }
     }
 }

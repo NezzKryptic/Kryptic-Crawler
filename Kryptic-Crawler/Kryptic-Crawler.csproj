@@ -70,10 +70,10 @@
     <Compile Include="Util\ArgumentManager.cs" />
     <Compile Include="Util\ConsoleManager.cs" />
     <Compile Include="Util\LogManager.cs" />
-    <Compile Include="Util\ParseCMD.cs" />
-    <Compile Include="Util\ParseJSON.cs" />
-    <Compile Include="Util\ParseXML.cs" />
-    <Compile Include="Util\ProgramMode.cs" />
+    <Compile Include="Parsers\ParseCMD.cs" />
+    <Compile Include="Parsers\ParseJSON.cs" />
+    <Compile Include="Parsers\ParseXML.cs" />
+    <Compile Include="Modes\ProgramMode.cs" />
     <Compile Include="Util\WebHandler.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ namespace Kryptic_Crawler.Modes
 {
     class MultiPage
     {
-        public static void PageConnect(int thread_index)
+        internal static void PageConnect(int thread_index)
         {
             for (int page_index = ArgumentManager.START_PAGE + thread_index; page_index < ArgumentManager.END_PAGE; page_index += ArgumentManager.DOWNLOAD_THREADS)
             {
@@ -16,7 +16,7 @@ namespace Kryptic_Crawler.Modes
                 {
                     var max_page = ArgumentManager.PAGE_INDEXES.Max();
 
-                    if (page_index >= (max_page - 8))
+                    if (page_index >= (max_page - ArgumentManager.DOWNLOAD_THREADS))
                     {
                         break;
                     }
@@ -25,7 +25,7 @@ namespace Kryptic_Crawler.Modes
             }
         }
 
-        public static void MultiConnect()
+        internal static void MultiConnect()
         {
             Thread read_console_input = new Thread(() => ConsoleManager.ReadInput());
             read_console_input.Start();
