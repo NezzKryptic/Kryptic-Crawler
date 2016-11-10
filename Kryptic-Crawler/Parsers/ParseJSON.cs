@@ -7,7 +7,7 @@ namespace Kryptic_Crawler.Parsers
 {
     class ParseJSON
     {
-        internal static void ParseJSONSettings(string[] args)
+        public static void ParseJSONSettings(string[] args)
         {
             string settings = File.ReadAllText(args[1].Replace("\\", "\\\\"));
 
@@ -33,6 +33,7 @@ namespace Kryptic_Crawler.Parsers
 
             }
 
+            // -- PATCH NOTE
             // ADD DIFFERENT VERBOSE LEVELS - STANDARD, ERROR, LOG, ETC
             // Verbose Console
             try

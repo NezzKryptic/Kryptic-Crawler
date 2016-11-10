@@ -5,7 +5,7 @@ namespace Kryptic_Crawler.Modes
 {
     class ProgramMode
     {
-        internal static void LoadMode()
+        public static void LoadMode()
         {
             switch (ArgumentManager.PROGRAM_MODE)
             {

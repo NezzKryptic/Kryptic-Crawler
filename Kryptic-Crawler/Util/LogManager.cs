@@ -5,7 +5,7 @@ namespace Kryptic_Crawler.Util
 {
     class LogManager
     {
-        internal static void WriteToLog(string text_to_write, int thread_index)
+        public static void WriteToLog(string text_to_write, int thread_index)
         {
             if(ArgumentManager.LOG_MODE == "single")
             {

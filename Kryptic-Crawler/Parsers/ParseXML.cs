@@ -7,7 +7,7 @@ namespace Kryptic_Crawler.Parsers
 {
     class ParseXML
     {
-        internal static void ParseXMLSettings(string[] args)
+        public static void ParseXMLSettings(string[] args)
         {
             XmlDocument settings_file = new XmlDocument();
             settings_file.Load(args[1]);

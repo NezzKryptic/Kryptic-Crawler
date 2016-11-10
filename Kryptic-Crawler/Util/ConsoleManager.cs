@@ -4,7 +4,7 @@ namespace Kryptic_Crawler.Util
 {
     class ConsoleManager
     {
-        internal static void ReadInput()
+        public static void ReadInput()
         {
             while (ArgumentManager.ALLOW_RUN)
             {
